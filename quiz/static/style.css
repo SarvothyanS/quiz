@@ -1,0 +1,43 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 50px;
+    color: rgb(20, 188, 255); 
+}
+body{
+    background-image: url('/static/image/luffy1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh;
+    margin: 0;
+
+}
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    background-color: #17ff0f; 
+    color: rgb(0, 0, 0); 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #fc0000; 
+}
+
+form {
+    text-align: left;
+    display: inline-block;
+    background-color: rgba(27, 0, 145, 0.8); 
+    padding: 20px;
+    border-radius: 10px;
+}
+
+h1 {
+    color: #fa0707;
+    text-shadow: 2px 2px 4px rgba(188, 250, 19, 0.5); 
+}
