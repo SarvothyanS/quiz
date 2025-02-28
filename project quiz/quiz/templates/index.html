@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Welcome to the Quiz App!</h1>
+    <p>Choose a difficulty level:</p>
+    <a href="{{ url_for('quiz', difficulty='easy') }}"><button>Easy</button></a>
+    <a href="{{ url_for('quiz', difficulty='medium') }}"><button>Medium</button></a>
+    <a href="{{ url_for('quiz', difficulty='hard') }}"><button>Hard</button></a>
+</body>
+</html>

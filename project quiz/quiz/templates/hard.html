@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hard Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        let timeLeft = 60;
+        const timer = setInterval(() => {
+            timeLeft--;
+            document.getElementById("timer").textContent = timeLeft;
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                document.getElementById("quiz-form").submit();
+            }
+        }, 1000);
+    </script>
+</head>
+<body>
+    <h1>Hard Quiz</h1>
+    <p>Time Left: <span id="timer">60</span> seconds</p>
+    <form id="quiz-form" action="{{ url_for('quiz', difficulty='hard') }}" method="POST">
+        {% for question in questions %}
+        <div>
+            <p>{{ question.question }}</p>
+            {% for option in question.options %}
+            <label>
+                <input type="radio" name="q{{ loop.index0 }}" value="{{ option }}"> {{ option }}
+            </label><br>
+            {% endfor %}
+        </div>
+        {% endfor %}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

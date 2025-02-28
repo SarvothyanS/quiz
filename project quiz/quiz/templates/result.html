@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Result</title>
+    <!-- Ensure the CSS file is correctly linked -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Include Chart.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Quiz Result</h1>
+    <p>Your score: {{ score }} / {{ total }}</p>
+
+    <!-- Canvas for the pie chart -->
+    <div style="width: 400px; height: 400px; margin: 0 auto;">
+        <canvas id="scoreChart"></canvas>
+    </div>
+
+    <!-- Button to go back to the home page -->
+    <a href="{{ url_for('index') }}"><button>Back to Home</button></a>
+
+    <script>
+        // Ensure score and total are correctly passed from Flask
+        const score = {{ score|int }};
+        const total = {{ total|int }};
+        const incorrect = total - score;
+
+        // Render the pie chart
+        const ctx = document.getElementById('scoreChart').getContext('2d');
+        const scoreChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Correct Answers', 'Incorrect Answers'],
+                datasets: [{
+                    data: [score, incorrect],
+                    backgroundColor: ['#36A2EB', '#FF6384'],
+                    hoverBackgroundColor: ['#36A2EB', '#FF6384']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        enabled: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
